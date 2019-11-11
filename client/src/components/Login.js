@@ -23,12 +23,12 @@ const Login = (props) => {
 
 		api()
 			.post("/api/login", user)
-			.then(result => {
+			.then((result) => {
 				localStorage.setItem("token", result.data.payload)
 				props.history.push("/bubble_page")
 			})
-			.catch(err => {
-				setError(err.response.data.message)
+			.catch((error) => {
+				setError(error.response.data.message)
 			})
 	}
 
