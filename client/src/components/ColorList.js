@@ -40,19 +40,15 @@ const ColorList = ({ colors, updateColors }) => {
   const deleteColor = (color) => {
     // make a delete request to delete this color
 
-    const new_color = colors.find((color) => color.color === color)
-
-		if (window.confirm("This  color will be deleted")) {
-			updateColors(colors.filter((color) => color.color !== color))
-
+		if (window.confirm(`${color.color}  color will be deleted`)) {
 			api()
 				.delete(`/api/colors/${color.id}`)
 				.then((result) => {
-					console.log(`${color.color} color was deleted`)
+          console.log(`${color.color} color was deleted`)
+          updateColors(colors.filter((color) => color.id !== result.data))
 				})
 				.catch((error) => {
 					console.log(error)
-					updateColors([...colors, new_color])
 				})
 		}
   };
